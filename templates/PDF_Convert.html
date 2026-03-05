@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Format Converter – Intelligent PDF Conversion</title>
+    <!-- Emoji Favicon to prevent 404 errors in terminal -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>"
+    />
+    <link href="/Static/output.css" rel="stylesheet" />
+  </head>
+
+  <body
+    class="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen"
+  >
+    <!-- Navbar -->
+    <nav
+      class="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/80 backdrop-blur"
+    >
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-2 shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-indigo-500"
+            >
+              <path
+                d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"
+              ></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <path d="M3 15h6"></path>
+              <path d="M6 12v6"></path>
+            </svg>
+            <a
+              href="/"
+              class="text-2xl font-extrabold tracking-wide hover:text-indigo-400 transition-colors"
+            >
+              <h1>Format<span class="text-indigo-500">Converter</span></h1>
+            </a>
+          </div>
+
+          <div
+            class="md:flex ml-10 flex-1 justify-center space-x-8 text-slate-30"
+          >
+            <a
+              href="/pdf_Convertion"
+              class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+              >PDF Tools</a
+            >
+            <a
+              href="/Image_Convertion"
+              class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+              >Image Tools</a
+            >
+            <a
+              href="#"
+              class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+              >About</a
+            >
+          </div>
+
+          <div class="md:flex items-center space-x-4">
+            <!-- <button
+              class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition"
+            >
+              Sign In
+            </button> -->
+            <button
+              class="ml-4 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
+            >
+              Get Started Free
+            </button>
+          </div>
+
+          <div class="hidden md:flex items-center space-x-8">
+            <div class="flex space-x-6">
+              <a
+                href="/pdf_Convertion"
+                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
+                >PDF Tools</a
+              >
+              <a
+                href="/Image_Convertion"
+                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
+                >Image Tools</a
+              >
+              <a
+                href="#"
+                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
+                >About</a
+              >
+            </div>
+            <div class="h-6 w-px bg-slate-700"></div>
+            <div class="flex items-center space-x-4">
+              <button
+                class="text-sm font-medium text-slate-300 hover:text-white transition"
+              >
+                Sign In
+              </button>
+              <button
+                class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
+              >
+                Get Started Free
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="max-w-6xl mx-auto px-6 pt-12 grid md:grid-cols-2 gap-12 items-center"
+    >
+      <div>
+        <h2 id="toolTitle" class="text-5xl font-extrabold leading-tight">
+          Smart <span class="text-indigo-400">PDF Tools</span>
+        </h2>
+        <p id="toolDesc" class="mt-6 text-slate-300 text-lg">
+          Convert, compress, extract and transform PDFs using AI-powered
+          workflows.
+        </p>
+        <div class="mt-8 flex gap-6 text-sm text-slate-400">
+          <span>✓ PDF, DOCX, PPTX</span>
+          <span>✓ Secure Processing</span>
+          <span>✓ AI Powered</span>
+        </div>
+      </div>
+
+      <!-- Tool Workspace -->
+      <div
+        class="bg-slate-800/60 border border-slate-700 backdrop-blur rounded-3xl p-8 shadow-xl"
+      >
+        <div
+          class="mb-6 flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/20 w-fit px-4 py-2 rounded-full"
+        >
+          <span id="toolBadgeIcon" class="text-xl"></span>
+          <span
+            id="toolBadgeName"
+            class="text-sm font-bold text-indigo-400 uppercase tracking-widest"
+          ></span>
+        </div>
+
+        <div
+          id="dropZone"
+          class="border-2 border-dashed border-slate-500 rounded-2xl p-10 text-center cursor-pointer hover:border-indigo-400 transition group"
+        >
+          <div
+            id="toolIcon"
+            class="text-4xl mb-3 group-hover:scale-110 transition-transform"
+          >
+            📄
+          </div>
+          <input
+            type="file"
+            id="fileInput"
+            class="hidden"
+            accept="application/pdf"
+          />
+          <p id="fileNameDisplay" class="text-lg font-semibold">
+            Drop your PDF here
+          </p>
+          <p class="text-slate-400 mt-2 text-sm">Max 100MB • Auto delete</p>
+        </div>
+
+        <!-- NEW: Dynamic Input Field for Edit Tools (Watermark/Password) -->
+        <div id="extraInputContainer" class="hidden mt-4">
+          <input
+            type="text"
+            id="extraInput"
+            placeholder="Enter text here..."
+            class="w-full bg-slate-900 border border-slate-600 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition"
+          />
+        </div>
+
+        <button
+          id="processBtn"
+          class="w-full mt-6 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-bold text-lg shadow-lg shadow-indigo-500/30"
+        >
+          Process PDF
+        </button>
+
+        <div id="suggestionGrid" class="mt-8 grid grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- Tools Grid Section  -->
+    <section
+      class="max-w-7xl mx-auto px-6 py-20 mt-16 border-t border-slate-800"
+    >
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold mb-4">Powerful PDF Tools</h2>
+        <p class="text-slate-400 max-w-3xl mx-auto text-lg">
+          Convert, organize, edit, and optimize PDF documents with professional
+          accuracy.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a
+          href="/pdf_Convertion?tool=merge-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📚</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Merge PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Combine multiple PDFs into a single document.
+          </p>
+        </a>
+
+        <a href="/pdf_Convertion?tool=add-page-numbers" class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition">
+          <div class="text-3xl mb-4">🔢</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">Add Page Numbers</h3>
+          <p class="text-slate-400 text-sm">Add pagination to the bottom of each page.</p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=split-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">✂️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Split PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Extract pages or split PDFs into separate files.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=compress-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📉</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Compress PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Reduce PDF size without losing quality.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=pdf-to-word"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📄</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            PDF to Word
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert PDFs into editable DOCX files.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=pdf-to-excel"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📊</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            PDF to Excel
+          </h3>
+          <p class="text-slate-400 text-sm">Extract tables instantly.</p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=word-to-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📝</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Word to PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert Word documents into perfect PDFs.
+          </p>
+        </a>
+
+        <!-- NEW: Excel to PDF -->
+        <a
+          href="/pdf_Convertion?tool=excel-to-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📈</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Excel to PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert Excel spreadsheets into easy-to-read PDFs.
+          </p>
+        </a>
+
+        <!-- NEW: PPT to PDF -->
+        <a
+          href="/pdf_Convertion?tool=ppt-to-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📊</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            PPT to PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert PowerPoint slides into a PDF document.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=pdf-to-ppt"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">📽️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            PDF to PPT
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Turn PDFs into editable PowerPoint slides.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=pdf-to-image"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">🖼️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            PDF to Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert each PDF page into high-quality PNG images.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=image-to-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">🖼️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Image to PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Combine multiple JPG, PNG, or WEBP images into one PDF.
+          </p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=watermark-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">✏️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Add Watermark
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Stamp custom text or watermarks across all pages.
+          </p>
+        </a>
+
+        <!-- NEW: Extract Images -->
+        <a href="/pdf_Convertion?tool=extract-images" class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition">
+          <div class="text-3xl mb-4">📥</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">Extract Images</h3>
+          <p class="text-slate-400 text-sm">Extract all embedded pictures and photos from your PDF.</p>
+        </a>
+
+        <a
+          href="/pdf_Convertion?tool=protect-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">🔒</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Protect PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Encrypt your PDF with a secure password.
+          </p>
+        </a>
+
+        <!-- NEW: Reorder Pages -->
+        <a href="/pdf_Convertion?tool=reorder-pages" class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition">
+          <div class="text-3xl mb-4">📑</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">Reorder Pages</h3>
+          <p class="text-slate-400 text-sm">Change the order of pages in your PDF.</p>
+        </a>
+
+        <!-- NEW: Remove Pages -->
+        <a
+          href="/pdf_Convertion?tool=remove-pages"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">🗑️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Remove Pages
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Delete unwanted pages from your PDF.
+          </p>
+        </a>
+
+        <!-- NEW: Rotate PDF -->
+        <a
+          href="/pdf_Convertion?tool=rotate-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">🔄</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Rotate PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Rotate all pages by 90, 180, or 270 degrees.
+          </p>
+        </a>
+
+        <!-- NEW: Unlock PDF -->
+        <a
+          href="/pdf_Convertion?tool=unlock-pdf"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition"
+        >
+          <div class="text-3xl mb-4">🔓</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Unlock PDF
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Remove password encryption from your PDF.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <footer
+      class="border-t border-slate-700 py-10 text-center text-slate-400 mt-auto"
+    >
+      © 2026 FormatConverter. Intelligent Document Tools. Made with ❤️ in INDIA.
+    </footer>
+
+    <!-- Processing Overlay -->
+    <div
+      id="processingOverlay"
+      class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm hidden items-center justify-center z-50"
+    >
+      <div
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-10 w-[90%] max-w-md text-center shadow-2xl"
+      >
+        <div class="flex justify-center mb-6">
+          <div
+            class="w-14 h-14 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Processing your PDF</h3>
+        <p class="text-slate-400 text-sm">
+          Please wait while we work our magic...
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactivity -->
+    <script>
+      const pdfToolConfig = {
+        "pdf-to-word": {
+          name: "PDF to Word",
+          icon: "📄",
+          desc: "Convert PDF files into fully editable Word documents.",
+          related: ["pdf-to-excel", "pdf-to-ppt", "compress-pdf"],
+        },
+        "pdf-to-excel": {
+          name: "PDF to Excel",
+          icon: "📊",
+          desc: "Extract tables and data from PDFs into Excel sheets.",
+          related: ["pdf-to-word", "compress-pdf"],
+        },
+        "pdf-to-ppt": {
+          name: "PDF to PowerPoint",
+          icon: "📽️",
+          desc: "Turn PDFs into editable PowerPoint slides.",
+          related: ["pdf-to-word", "compress-pdf"],
+        },
+        "compress-pdf": {
+          name: "Compress PDF",
+          icon: "📉",
+          desc: "Reduce PDF size without losing quality.",
+          related: ["pdf-to-word", "merge-pdf"],
+        },
+        "merge-pdf": {
+          name: "Merge PDF",
+          icon: "📚",
+          desc: "Combine multiple PDFs into one file.",
+          related: ["split-pdf", "compress-pdf"],
+        },
+        "split-pdf": {
+          name: "Split PDF",
+          icon: "✂️",
+          desc: "Split PDF pages into separate files.",
+          related: ["merge-pdf"],
+        },
+        "pdf-to-mp3": {
+          name: "PDF to MP3",
+          icon: "🎧",
+          desc: "Listen to your PDFs using AI voice narration.",
+          related: ["pdf-to-word"],
+        },
+        "pdf-to-image": {
+          name: "PDF to Image",
+          icon: "🖼️",
+          desc: "Convert each PDF page into high-quality PNG images.",
+          related: ["compress-pdf", "image-to-pdf"],
+        },
+        "image-to-pdf": {
+          name: "Image to PDF",
+          icon: "🖼️",
+          desc: "Convert one or multiple images into a single PDF document.",
+          related: ["pdf-to-image", "compress-pdf"],
+        },
+        "word-to-pdf": {
+          name: "Word to PDF",
+          icon: "📝",
+          desc: "Convert Word documents (.docx) into PDFs.",
+          related: ["pdf-to-word", "merge-pdf"],
+        },
+        "excel-to-pdf": {
+          name: "Excel to PDF",
+          icon: "📈",
+          desc: "Convert Excel spreadsheets (.xlsx) into PDFs.",
+          related: ["pdf-to-excel", "merge-pdf"],
+        },
+        "ppt-to-pdf": {
+          name: "PPT to PDF",
+          icon: "📊",
+          desc: "Convert PowerPoint presentations (.pptx) into PDFs.",
+          related: ["pdf-to-ppt", "merge-pdf"],
+        },
+        "watermark-pdf": {
+          name: "Add Watermark",
+          icon: "✏️",
+          desc: "Stamp custom text or watermarks across all PDF pages.",
+          related: ["protect-pdf", "compress-pdf"],
+          extraInputPrompt: "Enter Watermark Text (e.g. CONFIDENTIAL)",
+        },
+        "protect-pdf": {
+          name: "Protect PDF",
+          icon: "🔒",
+          desc: "Encrypt your PDF with a secure password.",
+          related: ["watermark-pdf", "compress-pdf"],
+          extraInputPrompt: "Enter secure password...",
+        },
+        "unlock-pdf": {
+          name: "Unlock PDF",
+          icon: "🔓",
+          desc: "Remove password encryption from your PDF.",
+          related: ["protect-pdf", "compress-pdf"],
+          extraInputPrompt: "Enter current password to unlock...",
+        },
+        "remove-pages": {
+          name: "Remove Pages",
+          icon: "🗑️",
+          desc: "Delete specific pages from your PDF.",
+          related: ["split-pdf", "merge-pdf"],
+          extraInputPrompt: "Pages to delete (e.g., 1, 3, 5)",
+        },
+        "rotate-pdf": {
+          name: "Rotate PDF",
+          icon: "🔄",
+          desc: "Rotate all pages in your PDF.",
+          related: ["merge-pdf", "remove-pages"],
+          extraInputPrompt: "Degrees to rotate (e.g., 90 or 180)",
+        },
+        "add-page-numbers": { 
+            name: "Add Page Numbers", 
+            icon: "🔢", 
+            desc: "Add centered page numbers to the bottom of your PDF.", 
+            related: ["merge-pdf", "split-pdf"], 
+            extraInputPrompt: "Starting page number (default is 1)" 
+        },
+        "extract-images": { 
+            name: "Extract Images", 
+            icon: "📥", 
+            desc: "Extract all embedded pictures and photos from your PDF into a ZIP.", 
+            related: ["pdf-to-image", "compress-pdf"] 
+        },
+        "reorder-pages": { 
+            name: "Reorder Pages", 
+            icon: "📑", 
+            desc: "Type the new page sequence separated by commas to reorder your PDF.", 
+            related: ["split-pdf", "remove-pages"], 
+            extraInputPrompt: "New order (e.g. 3, 1, 2, 4)" 
+        }
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const activeTool = params.get("tool") || "pdf-to-word";
+      const isMultipleFilesTool =
+        activeTool === "merge-pdf" || activeTool === "image-to-pdf";
+
+      const fileInput = document.getElementById("fileInput");
+      const dropZone = document.getElementById("dropZone");
+      const processBtn = document.getElementById("processBtn");
+      const overlay = document.getElementById("processingOverlay");
+      const extraInputContainer = document.getElementById(
+        "extraInputContainer",
+      );
+      const extraInput = document.getElementById("extraInput");
+
+      window.onload = () => {
+        const tool = pdfToolConfig[activeTool];
+
+        document.getElementById("toolTitle").innerHTML =
+          `${tool.name} <span class="text-indigo-500">Workspace</span>`;
+        document.getElementById("toolDesc").innerText = tool.desc;
+        document.getElementById("toolIcon").innerText = tool.icon;
+        document.getElementById("toolBadgeIcon").innerText = tool.icon;
+        document.getElementById("toolBadgeName").innerText = tool.name;
+
+        if (tool.extraInputPrompt) {
+          extraInputContainer.classList.remove("hidden");
+          extraInput.placeholder = tool.extraInputPrompt;
+          if (activeTool === "protect-pdf") extraInput.type = "password";
+        }
+
+        const dropText = document.getElementById("fileNameDisplay");
+        const subText = document.querySelector("#dropZone p.text-slate-400");
+
+        if (isMultipleFilesTool) {
+          fileInput.setAttribute("multiple", "true");
+          if (activeTool === "image-to-pdf") {
+            fileInput.setAttribute("accept", "image/*");
+            dropText.innerText = "Drop 1 or more Images here";
+            subText.innerText = "Select JPG, PNG, WEBP • Max 100MB each";
+          } else {
+            fileInput.setAttribute("accept", "application/pdf");
+            dropText.innerText = "Drop 2 or more PDFs here";
+            subText.innerText = "Select at least 2 PDFs • Max 100MB each";
+          }
+        } else if (activeTool === "word-to-pdf") {
+          fileInput.setAttribute("accept", ".doc,.docx");
+          dropText.innerText = "Drop Word Document here";
+          subText.innerText = "Select DOC or DOCX • Max 100MB";
+        } else if (activeTool === "excel-to-pdf") {
+          fileInput.setAttribute("accept", ".xls,.xlsx");
+          dropText.innerText = "Drop Excel Spreadsheet here";
+          subText.innerText = "Select XLS or XLSX • Max 100MB";
+        } else if (activeTool === "ppt-to-pdf") {
+          fileInput.setAttribute("accept", ".ppt,.pptx");
+          dropText.innerText = "Drop PowerPoint here";
+          subText.innerText = "Select PPT or PPTX • Max 100MB";
+        } else {
+          fileInput.setAttribute("accept", "application/pdf");
+          dropText.innerText = "Drop your PDF here";
+          subText.innerText = "Max 100MB • Auto delete";
+        }
+
+        const grid = document.getElementById("suggestionGrid");
+        if (grid) {
+          grid.innerHTML = "";
+          tool.related.forEach((key) => {
+            const r = pdfToolConfig[key];
+            if (r) {
+              grid.innerHTML += `
+                <a href="/pdf_Convertion?tool=${key}" class="p-4 rounded-xl bg-slate-800/40 border border-slate-700 hover:border-indigo-500 transition flex items-center gap-3">
+                <span class="text-xl">${r.icon}</span>
+                <span class="text-xs font-bold uppercase text-slate-300">${r.name}</span>
+                </a>`;
+            }
+          });
+        }
+      };
+
+      dropZone.onclick = () => fileInput.click();
+
+      fileInput.onchange = (e) => {
+        const selected = Array.from(e.target.files);
+        if (!selected.length) return;
+        if (isMultipleFilesTool) {
+          document.getElementById("fileNameDisplay").innerText =
+            `${selected.length} file(s) selected`;
+        } else {
+          document.getElementById("fileNameDisplay").innerText =
+            selected[0].name;
+        }
+        document
+          .getElementById("fileNameDisplay")
+          .classList.add("text-indigo-400");
+      };
+
+      dropZone.ondragover = (e) => {
+        e.preventDefault();
+        dropZone.classList.add("border-indigo-400");
+      };
+      dropZone.ondragleave = () =>
+        dropZone.classList.remove("border-indigo-400");
+      dropZone.ondrop = (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("border-indigo-400");
+        fileInput.files = e.dataTransfer.files;
+        fileInput.dispatchEvent(new Event("change"));
+      };
+
+      processBtn.onclick = async () => {
+        const selectedFiles = Array.from(fileInput.files);
+
+        if (!selectedFiles.length) {
+          alert("Please upload a file first.");
+          return;
+        }
+        if (activeTool === "merge-pdf" && selectedFiles.length < 2) {
+          alert(
+            "Merge requires at least 2 PDF files. Please select more files.",
+          );
+          return;
+        }
+
+        if (
+          !extraInputContainer.classList.contains("hidden") &&
+          extraInput.value.trim() === ""
+        ) {
+          alert(extraInput.placeholder);
+          extraInput.focus();
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("tool", activeTool);
+        formData.append("extra_param", extraInput.value.trim());
+
+        selectedFiles.forEach((f) => formData.append("files", f));
+
+        overlay.classList.remove("hidden");
+        overlay.style.display = "flex";
+        processBtn.disabled = true;
+
+        try {
+          const res = await fetch("/api/pdf/convert", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!res.ok) {
+            const errorData = await res.json().catch(() => ({}));
+            throw new Error(errorData.error || `Server Error: ${res.status}`);
+          }
+
+          const data = await res.json();
+
+          if (data.download_url) {
+            const a = document.createElement("a");
+            a.href = data.download_url;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Request Failed: " + err.message);
+        } finally {
+          overlay.classList.add("hidden");
+          overlay.style.display = "none";
+          processBtn.disabled = false;
+        }
+      };
+    </script>
+  </body>
+</html>

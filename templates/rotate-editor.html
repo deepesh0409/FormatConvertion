@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotate Image – FormatConverter</title>
+    <link href="/Static/output.css" rel="stylesheet" />
+  </head>
+  <body class="bg-slate-900 text-white min-h-screen">
+    <nav
+      class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="/" class="text-2xl font-bold tracking-wide">
+            <h1>File <span class="text-indigo-500">Converter</span></h1>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 py-20">
+      <div
+        class="bg-slate-800/60 border border-slate-700 rounded-3xl p-10 text-center"
+      >
+        <h2 class="text-2xl font-bold mb-6">Rotate Image Workspace</h2>
+
+        <input type="file" id="imageInput" accept="image/*" hidden />
+
+        <!-- Upload Area -->
+        <div
+          id="dropZone"
+          class="border-2 border-dashed border-slate-600 rounded-2xl p-16 cursor-pointer text-slate-400 hover:border-indigo-500 transition flex flex-col items-center gap-4"
+        >
+          <div id="uploadUI">
+            <span class="text-4xl">📁</span>
+            <p id="statusText">Click to upload image to rotate</p>
+          </div>
+
+          <button
+            id="processBtn"
+            class="hidden mt-8 px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold"
+          >
+            Process Image
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROTATE MODAL -->
+    <div
+      id="rotateModal"
+      class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-2xl shadow-2xl relative"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold">Rotate Editor</h3>
+          <button
+            id="closeRotateModal"
+            class="text-slate-400 hover:text-white text-3xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+
+        <!-- Canvas and Controls -->
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <!-- Canvas Container -->
+          <div
+            class="bg-slate-900 rounded-xl border border-slate-700 p-2 h-80 flex items-center justify-center"
+          >
+            <canvas id="rotateCanvas"></canvas>
+          </div>
+
+          <!-- Controls -->
+          <div class="space-y-6">
+            <div>
+              <label
+                for="rotateSlider"
+                class="block text-sm font-medium text-slate-400 mb-2"
+              >
+                Angle: <span id="angleValue">0</span>°
+              </label>
+              <input
+                id="rotateSlider"
+                type="range"
+                min="-180"
+                max="180"
+                value="0"
+                class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-sm">
+              <button
+                onclick="setRotation(90)"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Rotate 90°
+              </button>
+              <button
+                onclick="setRotation(-90)"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Rotate -90°
+              </button>
+              <button
+                onclick="flipHorizontal()"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Flip Horizontal
+              </button>
+              <button
+                onclick="flipVertical()"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Flip Vertical
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 mt-6 border-t border-slate-700 pt-6">
+          <button
+            id="cancelRotate"
+            class="flex-1 px-5 py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold"
+          >
+            Cancel
+          </button>
+          <button
+            id="applyRotate"
+            class="flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold shadow-lg shadow-indigo-500/20 transition"
+          >
+            Save & Download
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/Static/base.js"></script>
+    <script>
+      const dropZone = document.getElementById("dropZone");
+      const fileInput = document.getElementById("imageInput");
+
+      const statusText = document.getElementById("statusText");
+
+      // Modal elements
+      const rotateModal = document.getElementById("rotateModal");
+      const closeRotateModal = document.getElementById("closeRotateModal");
+      const cancelRotate = document.getElementById("cancelRotate");
+      const applyRotate = document.getElementById("applyRotate");
+
+      // Canvas and controls
+      const canvas = document.getElementById("rotateCanvas");
+      const ctx = canvas.getContext("2d");
+      const slider = document.getElementById("rotateSlider");
+      const angleValue = document.getElementById("angleValue");
+
+      // 1. File Upload
+      let img = new Image();
+      let imageLoaded = false;
+
+      fileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          img.src = event.target.result;
+          img.onload = () => {
+            imageLoaded = true;
+            statusText.innerText = file.name;
+            processBtn.classList.remove("hidden");
+          };
+        };
+        reader.readAsDataURL(file);
+      };
+
+      closeRotateModal.onclick = closeModal;
+      cancelRotate.onclick = closeModal;
+
+      // 3. Canvas Logic
+      function setupCanvas() {
+        const maxW = 350;
+        const maxH = 350;
+        const ratio = Math.min(maxW / img.width, maxH / img.height);
+
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+
+        currentRotation = 0;
+        scaleX = 1;
+        scaleY = 1;
+
+        slider.value = 0;
+        angleValue.innerText = "0";
+
+        drawImage(); // ✅ VERY IMPORTANT
+      }
+
+      function drawImage() {
+        // Clear canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.save();
+        // Translate to center for rotation
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        // Apply rotation
+        ctx.rotate((currentRotation * Math.PI) / 180);
+        // Apply flip
+        ctx.scale(scaleX, scaleY);
+        // Draw image centered
+        ctx.drawImage(
+          img,
+          -canvas.width / 2,
+          -canvas.height / 2,
+          canvas.width,
+          canvas.height,
+        );
+        ctx.restore();
+      }
+
+      // 4. Controls
+      slider.oninput = (e) => {
+        currentRotation = parseInt(e.target.value);
+        angleValue.innerText = currentRotation;
+        drawImage();
+      };
+
+      window.setRotation = (deg) => {
+        currentRotation = (currentRotation + deg) % 360;
+        slider.value = currentRotation; // Update slider to reflect change
+        angleValue.innerText = currentRotation;
+        drawImage();
+      };
+
+      window.flipHorizontal = () => {
+        scaleX *= -1;
+        drawImage();
+      };
+
+      window.flipVertical = () => {
+        scaleY *= -1;
+        drawImage();
+      };
+
+      // 5. Download
+      applyRotate.onclick = () => {
+        // Create a new canvas with full resolution
+        const downloadCanvas = document.createElement("canvas");
+        const downloadCtx = downloadCanvas.getContext("2d");
+
+        // Calculate dimensions for the rotated image
+        const rad = (currentRotation * Math.PI) / 180;
+        const absCos = Math.abs(Math.cos(rad));
+        const absSin = Math.abs(Math.sin(rad));
+        const newWidth = img.width * absCos + img.height * absSin;
+        const newHeight = img.width * absSin + img.height * absCos;
+
+        downloadCanvas.width = newWidth;
+        downloadCanvas.height = newHeight;
+
+        downloadCtx.save();
+        downloadCtx.translate(newWidth / 2, newHeight / 2);
+        downloadCtx.rotate(rad);
+        downloadCtx.scale(scaleX, scaleY);
+        downloadCtx.drawImage(img, -img.width / 2, -img.height / 2);
+        downloadCtx.restore();
+
+        const link = document.createElement("a");
+        link.download = "rotated-image.png";
+        link.href = downloadCanvas.toDataURL("image/png");
+        link.click();
+        closeModal();
+      };
+
+      processBtn.onclick = () => {
+        if (!imageLoaded) {
+          alert("Please upload an image first");
+          return;
+        }
+
+        setupCanvas(); // ✅ DRAW IMAGE FIRST
+        rotateModal.classList.remove("hidden");
+        rotateModal.classList.add("flex");
+      };
+
+      const closeModal = () => {
+        rotateModal.classList.add("hidden");
+        rotateModal.classList.remove("flex");
+      };
+
+      closeRotateModal.onclick = closeModal;
+      cancelRotate.onclick = closeModal;
+    </script>
+  </body>
+</html>

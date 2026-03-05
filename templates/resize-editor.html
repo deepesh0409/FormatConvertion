@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resize Image – FormatConverter</title>
+    <link href="/Static/output.css" rel="stylesheet" />
+    <style>
+        .modal-overlay { background-color: rgba(15, 23, 42, 0.8); backdrop-filter: blur(4px); }
+    </style>
+</head>
+<body class="bg-slate-900 text-white min-h-screen">
+    <!-- Navbar (Same as your original) -->
+    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-2xl font-bold tracking-wide">
+                    <h1>File <span class="text-indigo-500">Converter</span></h1>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="max-w-4xl mx-auto px-6 py-20">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-3xl p-10 text-center">
+            <h2 class="text-2xl font-bold mb-6">Resize Image Workspace</h2>
+
+            <input type="file" id="imageInput" accept="image/*" hidden />
+
+            <!-- Upload Area -->
+            <div id="dropZone" class="border-2 border-dashed border-slate-600 rounded-2xl p-16 cursor-pointer text-slate-400 hover:border-indigo-500 transition flex flex-col items-center gap-4">
+                <div id="uploadUI">
+                    <span class="text-4xl">📁</span>
+                    <p id="statusText">Click to upload image</p>
+                </div>
+                <!-- Mini Preview after upload -->
+                <img id="previewImg" class="hidden max-h-40 rounded-lg shadow-lg border border-slate-700" />
+            </div>
+
+            <button id="processBtn" class="hidden mt-8 px-8 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold transition-all transform hover:scale-105">
+                Process Image
+            </button>
+        </div>
+    </div>
+
+    <!-- RESIZE MODAL -->
+    <div id="resizeModal" class="fixed inset-0 modal-overlay hidden items-center justify-center z-50 p-4">
+        <div class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-md shadow-2xl relative">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Resize Settings</h3>
+                <button id="closeResizeModal" class="text-slate-400 hover:text-white text-3xl leading-none">&times;</button>
+            </div>
+
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Width (px)</label>
+                    <input type="number" id="widthInput" class="w-full rounded-lg p-3 bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-indigo-500 outline-none" />
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Height (px)</label>
+                    <input type="number" id="heightInput" class="w-full rounded-lg p-3 bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-indigo-500 outline-none" />
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="aspectRatio" checked class="w-4 h-4 accent-indigo-500" />
+                    <label for="aspectRatio" class="text-sm text-slate-400 cursor-pointer">Lock aspect ratio</label>
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <button id="cancelResize" class="flex-1 px-5 py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold">Cancel</button>
+                <button id="applyResize" class="flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold shadow-lg shadow-indigo-500/20 transition">Save & Download</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const dropZone = document.getElementById("dropZone");
+        const fileInput = document.getElementById("imageInput");
+        const processBtn = document.getElementById("processBtn");
+        const previewImg = document.getElementById("previewImg");
+        const uploadUI = document.getElementById("uploadUI");
+        const statusText = document.getElementById("statusText");
+
+        const resizeModal = document.getElementById("resizeModal");
+        const widthInput = document.getElementById("widthInput");
+        const heightInput = document.getElementById("heightInput");
+        const aspectCheck = document.getElementById("aspectRatio");
+
+        let originalImage = new Image();
+        let originalRatio = 1;
+
+        // 1. Handle File Upload
+        dropZone.onclick = () => fileInput.click();
+
+        fileInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    originalImage.src = event.target.result;
+                    originalImage.onload = () => {
+                        // Show preview and process button
+                        previewImg.src = event.target.result;
+                        previewImg.classList.remove("hidden");
+                        uploadUI.classList.add("hidden");
+                        processBtn.classList.remove("hidden");
+                        statusText.innerText = file.name;
+                        
+                        // Set initial dimensions
+                        widthInput.value = originalImage.width;
+                        heightInput.value = originalImage.height;
+                        originalRatio = originalImage.width / originalImage.height;
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        // 2. Open Modal
+        processBtn.onclick = () => resizeModal.classList.remove("hidden");
+
+        // 3. Aspect Ratio Logic
+        widthInput.oninput = () => {
+            if (aspectCheck.checked) {
+                heightInput.value = Math.round(widthInput.value / originalRatio);
+            }
+        };
+
+        heightInput.oninput = () => {
+            if (aspectCheck.checked) {
+                widthInput.value = Math.round(heightInput.value * originalRatio);
+            }
+        };
+
+        // 4. Close Modal (No reset)
+        const closeModal = () => resizeModal.classList.add("hidden");
+        document.getElementById("closeResizeModal").onclick = closeModal;
+        document.getElementById("cancelResize").onclick = closeModal;
+
+        // 5. Process and Download
+        document.getElementById("applyResize").onclick = () => {
+            const canvas = document.createElement("canvas");
+            const ctx = canvas.getContext("2d");
+            
+            canvas.width = parseInt(widthInput.value);
+            canvas.height = parseInt(heightInput.value);
+            
+            ctx.drawImage(originalImage, 0, 0, canvas.width, canvas.height);
+            
+            // Trigger Download
+            const link = document.createElement("a");
+            link.download = "resized-image.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+            
+            closeModal();
+        };
+    </script>
+</body>
+</html>

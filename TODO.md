@@ -1,0 +1,3 @@
+- [x] Update message listener in Image_Convert.html to handle rotated image and provide download link
+- [x] Ensure rotate tool is properly integrated in the tool grid
+- [x] Test the rotation and download functionality

@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image FormatConverter – Professional Image Tools</title>
+
+    <!-- Emoji Favicon -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>"
+    />
+    <link href="/Static/output.css" rel="stylesheet" />
+  </head>
+
+  <body
+    class="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen"
+  >
+    <!-- Navbar -->
+    <nav
+      class="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/80 backdrop-blur"
+    >
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex h-16 items-center justify-between">
+          <div class="flex items-center gap-2 shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-indigo-500"
+            >
+              <path
+                d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"
+              ></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <path d="M3 15h6"></path>
+              <path d="M6 12v6"></path>
+            </svg>
+            <a
+              href="/"
+              class="text-2xl font-extrabold tracking-wide hover:text-indigo-400 transition-colors"
+            >
+              <h1>Format<span class="text-indigo-500">Converter</span></h1>
+            </a>
+
+            <div
+              class="md:flex ml-10 flex-1 justify-center space-x-8 text-slate-30"
+            >
+              <a
+                href="/pdf_Convertion"
+                class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                >PDF Tools</a
+              >
+              <a
+                href="/Image_Convertion"
+                class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                >Image Tools</a
+              >
+              <a
+                href="#"
+                class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
+                >About</a
+              >
+            </div>
+
+            <div class="md:flex items-center space-x-4">
+              <!-- <button
+              class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition"
+            >
+              Sign In
+            </button> -->
+              <button
+                class="ml-4 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
+              >
+                Get Started Free
+              </button>
+            </div>
+          </div>
+
+          <div class="hidden md:flex items-center space-x-8">
+            <div class="flex space-x-6">
+              <a
+                href="/pdf_Convertion"
+                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
+                >PDF Tools</a
+              >
+              <a
+                href="/Image_Convertion"
+                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
+                >Image Tools</a
+              >
+              <a
+                href="#"
+                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
+                >About</a
+              >
+            </div>
+            <div class="h-6 w-px bg-slate-700"></div>
+            <div class="flex items-center space-x-4">
+              <button
+                class="text-sm font-medium text-slate-300 hover:text-white transition"
+              >
+                Sign In
+              </button>
+              <button
+                class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
+              >
+                Get Started Free
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="max-w-6xl mx-auto px-6 pt-12 grid md:grid-cols-2 gap-12 items-center"
+    >
+      <div>
+        <h2 id="toolTitle" class="text-5xl font-extrabold leading-tight">
+          Next-Gen <span class="text-indigo-400">Image Editing</span> with AI
+        </h2>
+        <p id="toolDesc" class="mt-6 text-slate-300 text-lg">
+          Convert formats, compress without quality loss, and resize images
+          instantly using our browser-based neural tools.
+        </p>
+        <div class="mt-8 flex gap-6 text-sm text-slate-400">
+          <span>✓ JPG, PNG, WebP</span>
+          <span>✓ Private Processing</span>
+          <span>✓ Instant Download</span>
+        </div>
+      </div>
+
+      <div
+        class="bg-slate-800/60 border border-slate-700 backdrop-blur rounded-3xl p-8 shadow-xl"
+      >
+        <div
+          class="mb-6 flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/20 w-fit px-4 py-2 rounded-full"
+        >
+          <span id="toolBadgeIcon" class="text-xl"></span>
+          <span
+            id="toolBadgeName"
+            class="text-sm font-bold text-indigo-400 uppercase tracking-widest"
+          ></span>
+        </div>
+
+        <div
+          id="dropZone"
+          class="border-2 border-dashed border-slate-500 rounded-2xl p-10 text-center cursor-pointer hover:border-indigo-400 transition group"
+        >
+          <div
+            id="toolIcon"
+            class="text-4xl mb-3 group-hover:scale-110 transition-transform"
+          >
+            🖼️
+          </div>
+          <input type="file" id="imageInput" class="hidden" accept="image/*" />
+          <p id="fileNameDisplay" class="text-lg font-semibold">
+            Drop your image here
+          </p>
+          <p class="text-slate-400 mt-2 text-sm">
+            Supports up to 50MB per file
+          </p>
+        </div>
+
+        <!-- NEW: Dynamic Input Field for Watermarks -->
+        <div id="extraInputContainer" class="hidden mt-4">
+          <input
+            type="text"
+            id="extraInput"
+            placeholder="Enter text here..."
+            class="w-full bg-slate-900 border border-slate-600 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition"
+          />
+        </div>
+
+        <button
+          id="convertBtn"
+          class="w-full mt-6 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-bold text-lg shadow-lg shadow-indigo-500/30"
+        >
+          Process Image
+        </button>
+
+        <div id="suggestionGrid" class="mt-8 grid grid-cols-2 gap-4"></div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="max-w-7xl mx-auto px-6 py-12">
+      <div class="text-center mb-16 mt-16 border-t border-slate-800 pt-16">
+        <h2 class="text-4xl font-extrabold mb-4">Powerful Image Tools</h2>
+        <p class="text-slate-400 max-w-3xl mx-auto text-lg">
+          Fast, secure, and professional quality.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <a
+          href="/Image_Convertion?tool=compress"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">📉</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Compress Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Reduce file size by up to 80% without losing visual quality.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=rotate"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">🔄</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Rotate Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Manual free-angle rotation and vertical/horizontal flipping.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=jpg-to-png"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">🖼️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            JPG to PNG
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert JPG images to PNG format with high accuracy.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=png-to-jpg"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">📸</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            PNG to JPG
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert PNG images to JPG format smoothly.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=resize"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-3">📐</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Resize Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Define exact dimensions by keeping the aspect ratio.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=crop"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-3">✂️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Crop Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Crop to perfect square (1:1) or standard ratios.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=upscale"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-2">🔍</div>
+          <h3 class="text-md font-semibold mb-2 group-hover:text-indigo-400">
+            AI Image Upscaler
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Increase image resolution and clarity using neural networks.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=bg-remove"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">✂️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Remove Background
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Remove backgrounds from images instantly using AI edge detection.
+          </p>
+        </a>
+
+        <!-- NEW: Convert to WebP -->
+        <a href="/Image_Convertion?tool=to-webp" class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all">
+          <div class="text-3xl mb-4">🕸️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">Convert to WebP</h3>
+          <p class="text-slate-400 text-sm">Convert JPG or PNG to WebP for faster website loading.</p>
+        </a>
+
+        <!-- NEW: Extract Text (OCR) -->
+        
+        
+        <!-- NEW: HEIC to JPG -->
+        <a
+          href="/Image_Convertion?tool=heic-to-jpg"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">📱</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            HEIC to JPG
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Convert Apple iPhone photos (HEIC) into standard JPGs.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=blur-face"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-3">👤</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Blur Face
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Protect privacy with automatic face blurring.
+          </p>
+        </a>
+
+        <!-- NEW: WATERMARK TOOLS -->
+        <a
+          href="/Image_Convertion?tool=watermark"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-3">🖋️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Watermark Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Stamp custom text over your images to protect them.
+          </p>
+        </a>
+        <a
+          href="/Image_Convertion?tool=wm-remover"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-3">🧼</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Watermark Remover
+          </h3>
+          <p class="text-slate-400 text-sm">
+            AI-powered inpainting to erase unwanted watermarks.
+          </p>
+        </a>
+
+        <a
+          href="/Image_Convertion?tool=compress-exact"
+          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <div class="text-3xl mb-4">🗜️</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            Compress to Exact KB
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Shrink image size to a specific limit (e.g., Under 50KB).
+          </p>
+        </a>
+
+        <!-- Coming soon items left -->
+        <div
+          class="tool-card-relative group relative bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+        >
+          <span class="coming-soon-overlay"
+            ><h2 class="coming-soon-text">COMING SOON</h2></span
+          >
+          <div class="text-3xl mb-3">🌐</div>
+          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+            HTML to Image
+          </h3>
+          <p class="text-slate-400 text-sm">
+            Turn any webpage into a high-quality PNG.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="border-t border-slate-700 py-10 text-center text-slate-400 mt-auto"
+    >
+      © 2026 FormatConverter. Intelligent Visual Tools. Made with ❤️ in INDIA.
+    </footer>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- Resize Modal -->
+    <div
+      id="resizeModal"
+      class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-md shadow-2xl relative"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold">Resize Settings</h3>
+          <button
+            id="closeResize"
+            class="text-slate-400 hover:text-white text-3xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="space-y-4 mb-6">
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase mb-2"
+              >Width (px)</label
+            >
+            <input
+              type="number"
+              id="widthInput"
+              class="w-full rounded-lg p-3 bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-indigo-500 outline-none"
+            />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-500 uppercase mb-2"
+              >Height (px)</label
+            >
+            <input
+              type="number"
+              id="heightInput"
+              class="w-full rounded-lg p-3 bg-slate-900 border border-slate-700 text-white focus:ring-2 focus:ring-indigo-500 outline-none"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <input
+              type="checkbox"
+              id="aspectRatio"
+              checked
+              class="w-4 h-4 accent-indigo-500"
+            />
+            <label
+              for="aspectRatio"
+              class="text-sm text-slate-400 cursor-pointer"
+              >Lock aspect ratio</label
+            >
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <button
+            id="btnCancelResize"
+            class="flex-1 px-5 py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold"
+          >
+            Cancel
+          </button>
+          <button
+            id="btnApplyResize"
+            class="flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold shadow-lg shadow-indigo-500/20 transition"
+          >
+            Save & Download
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotate Modal -->
+    <div
+      id="rotateModal"
+      class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-2xl shadow-2xl relative"
+      >
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold">Rotate Editor</h3>
+          <button
+            id="closeRotate"
+            class="text-slate-400 hover:text-white text-3xl leading-none"
+          >
+            &times;
+          </button>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 items-center">
+          <div
+            class="bg-slate-900 rounded-xl border border-slate-700 p-2 h-80 flex items-center justify-center overflow-hidden"
+          >
+            <canvas id="rotateCanvas"></canvas>
+          </div>
+          <div class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-slate-400 mb-2"
+                >Angle: <span id="angleValue">0</span>°</label
+              >
+              <input
+                id="rotateSlider"
+                type="range"
+                min="-180"
+                max="180"
+                value="0"
+                class="w-full h-2 bg-slate-700 rounded-lg cursor-pointer"
+              />
+            </div>
+            <div class="grid grid-cols-2 gap-3 text-sm">
+              <button
+                id="btnRot90"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Rotate 90°
+              </button>
+              <button
+                id="btnRotMin90"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Rotate -90°
+              </button>
+              <button
+                id="btnFlipH"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Flip Horizontal
+              </button>
+              <button
+                id="btnFlipV"
+                class="p-2 rounded-lg bg-slate-700 hover:bg-slate-600 transition"
+              >
+                Flip Vertical
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-4 mt-6 border-t border-slate-700 pt-6">
+          <button
+            id="btnCancelRotate"
+            class="flex-1 px-5 py-3 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold"
+          >
+            Cancel
+          </button>
+          <button
+            id="btnApplyRotate"
+            class="flex-1 px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 font-bold shadow-lg shadow-indigo-500/20 transition"
+          >
+            Save & Download
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crop Modal -->
+    <div
+      id="cropModal"
+      class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm hidden items-center justify-center z-50 p-4"
+    >
+      <div
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-sm shadow-2xl relative text-center"
+      >
+        <h3 class="text-xl font-bold mb-2">Fast Center Crop</h3>
+        <p class="text-sm text-slate-400 mb-6">
+          Choose a ratio to crop the center of your image perfectly.
+        </p>
+
+        <div class="space-y-3 mb-6">
+          <button
+            id="btnCropSquare"
+            class="w-full p-4 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold flex justify-between"
+          >
+            <span>1:1 Square</span> <span>🔳</span>
+          </button>
+          <button
+            id="btnCropLand"
+            class="w-full p-4 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold flex justify-between"
+          >
+            <span>16:9 Landscape</span> <span>📺</span>
+          </button>
+          <button
+            id="btnCropPort"
+            class="w-full p-4 rounded-xl bg-slate-700 hover:bg-slate-600 transition font-semibold flex justify-between"
+          >
+            <span>9:16 Portrait</span> <span>📱</span>
+          </button>
+        </div>
+        <button
+          id="btnCancelCrop"
+          class="w-full px-5 py-3 rounded-xl bg-slate-900 border border-slate-600 hover:bg-slate-700 transition font-semibold"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <!-- ================= JAVASCRIPT ================= -->
+    <script>
+      const toolConfig = {
+        compress: {
+          name: "Compress Image",
+          icon: "📉",
+          desc: "Reduce file size with zero quality loss.",
+          related: ["jpg-to-png", "png-to-jpg", "resize"],
+        },
+        rotate: {
+          name: "Rotate Image",
+          icon: "🔄",
+          desc: "Flip or turn images 90-180 degrees.",
+          related: ["crop", "resize", "compress"],
+        },
+        "jpg-to-png": {
+          name: "JPG to PNG",
+          icon: "🖼️",
+          desc: "Convert your JPG images to PNG format.",
+          related: ["png-to-jpg", "compress", "resize"],
+        },
+        "png-to-jpg": {
+          name: "PNG to JPG",
+          icon: "📸",
+          desc: "Convert PNG images to JPG format.",
+          related: ["compress", "resize", "jpg-to-png"],
+        },
+        resize: {
+          name: "Resize Image",
+          icon: "📐",
+          desc: "Change dimensions by pixel or percentage.",
+          related: ["crop", "compress", "rotate"],
+        },
+        crop: {
+          name: "Crop Image",
+          icon: "✂️",
+          desc: "Trim edges or change aspect ratio.",
+          related: ["resize", "rotate", "compress"],
+        },
+        "bg-remove": {
+          name: "Remove Background",
+          icon: "✂️",
+          desc: "Use AI to automatically remove the background.",
+          related: ["blur-face", "upscale", "compress"],
+        },
+        "blur-face": {
+          name: "Blur Face",
+          icon: "👤",
+          desc: "Automatically detect and blur faces.",
+          related: ["bg-remove", "compress", "jpg-to-png"],
+        },
+        upscale: {
+          name: "AI Upscaler",
+          icon: "🔍",
+          desc: "Enhance resolution and sharpen details.",
+          related: ["bg-remove", "compress", "crop"],
+        },
+
+        // NEW CONFIGS
+        watermark: {
+          name: "Watermark Image",
+          icon: "🖋️",
+          desc: "Add custom text over your image.",
+          related: ["wm-remover", "compress", "resize"],
+          extraInputPrompt: "Enter Watermark Text...",
+        },
+        "wm-remover": {
+          name: "Watermark Remover",
+          icon: "🧼",
+          desc: "AI-assisted inpainting to clean text/marks.",
+          related: ["watermark", "bg-remove", "upscale"],
+        },
+        "compress-exact": {
+          name: "Compress to Target Size",
+          icon: "🗜️",
+          desc: "Enter a maximum file size (in KB). Perfect for govt portals and job applications.",
+          related: ["compress", "resize", "jpg-to-png"],
+          extraInputPrompt: "Max size in KB (e.g., 50)",
+        },
+        "heic-to-jpg": {
+          name: "HEIC to JPG",
+          icon: "📱",
+          desc: "Convert iPhone HEIC photos to standard JPG format.",
+          related: ["png-to-jpg", "compress", "resize"],
+        },
+        "to-webp": { 
+              name: "Convert to WebP", 
+              icon: "🕸️", 
+              desc: "Convert your image to the next-gen WebP format for faster website loading.", 
+              related:["compress", "resize", "jpg-to-png"] 
+        },
+         
+      };
+
+      window.onload = () => {
+        const params = new URLSearchParams(window.location.search);
+        const activeKey = params.get("tool") || "jpg-to-png";
+        const config = toolConfig[activeKey] || toolConfig["jpg-to-png"];
+
+        document.getElementById("toolTitle").innerHTML =
+          `${config.name} <span class="text-indigo-500">Workspace</span>`;
+        document.getElementById("toolDesc").innerText = config.desc;
+        document.getElementById("toolIcon").innerText = config.icon;
+        document.getElementById("toolBadgeName").innerText = config.name;
+        document.getElementById("toolBadgeIcon").innerText = config.icon;
+
+        // Toggle extra input field for watermark tool
+        const extraInputContainer = document.getElementById(
+          "extraInputContainer",
+        );
+        const extraInput = document.getElementById("extraInput");
+
+        if (activeKey === "heic-to-jpg") {
+          fileInput.setAttribute("accept", ".heic,.heif,image/heic,image/*");
+          document.querySelector("#dropZone p.text-slate-400").innerText =
+            "Supports HEIC and HEIF formats";
+        } else {
+          fileInput.setAttribute("accept", "image/*");
+          document.querySelector("#dropZone p.text-slate-400").innerText =
+            "Supports up to 50MB per file";
+        }
+
+        if (config.extraInputPrompt) {
+          extraInputContainer.classList.remove("hidden");
+          extraInput.placeholder = config.extraInputPrompt;
+        } else {
+          extraInputContainer.classList.add("hidden");
+        }
+
+        const grid = document.getElementById("suggestionGrid");
+        if (grid) {
+          grid.innerHTML = "";
+          config.related.forEach((key) => {
+            const r = toolConfig[key];
+            if (r) {
+              grid.innerHTML += `
+                      <a href="/Image_Convertion?tool=${key}" class="p-4 rounded-xl bg-slate-800/40 border border-slate-700 hover:border-indigo-500 transition flex items-center gap-3">
+                         <span class="text-xl">${r.icon}</span>
+                         <span class="text-xs font-bold uppercase text-slate-300">${r.name}</span>
+                      </a>`;
+            }
+          });
+        }
+      };
+
+      const dropZone = document.getElementById("dropZone");
+      const fileInput = document.getElementById("imageInput");
+      const fileNameDisplay = document.getElementById("fileNameDisplay");
+      const convertBtn = document.getElementById("convertBtn");
+
+      const extraInputContainer = document.getElementById(
+        "extraInputContainer",
+      );
+      const extraInput = document.getElementById("extraInput");
+
+      // Shared memory for frontend tools
+      let currentImage = new Image();
+      let originalRatio = 1;
+      let currentRotation = 0;
+      let scaleX = 1;
+      let scaleY = 1;
+
+      dropZone.onclick = () => fileInput.click();
+
+      dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("border-indigo-500", "bg-slate-700/40");
+      });
+
+      dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("border-indigo-500", "bg-slate-700/40");
+      });
+
+      dropZone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("border-indigo-500", "bg-slate-700/40");
+        if (e.dataTransfer.files.length) {
+          fileInput.files = e.dataTransfer.files;
+          fileNameDisplay.innerText = fileInput.files[0].name;
+          fileNameDisplay.classList.add("text-indigo-400");
+        }
+      });
+
+      fileInput.addEventListener("change", () => {
+        if (fileInput.files.length) {
+          fileNameDisplay.innerText = fileInput.files[0].name;
+          fileNameDisplay.classList.add("text-indigo-400");
+        }
+      });
+
+      convertBtn.onclick = async () => {
+        const file = fileInput.files[0];
+        const params = new URLSearchParams(window.location.search);
+        const tool = params.get("tool") || "jpg-to-png";
+
+        if (!file) {
+          alert("Please upload an image first!");
+          return;
+        }
+
+        // Validate extra text field if it's visible
+        if (
+          !extraInputContainer.classList.contains("hidden") &&
+          extraInput.value.trim() === ""
+        ) {
+          alert(extraInput.placeholder);
+          extraInput.focus();
+          return;
+        }
+
+        // 1. Check if tool is Frontend Canvas Tool (Resize, Rotate, Crop)
+        if (tool === "resize" || tool === "rotate" || tool === "crop") {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            currentImage.src = event.target.result;
+            currentImage.onload = () => {
+              if (tool === "resize") openResizeModal();
+              if (tool === "rotate") openRotateModal();
+              if (tool === "crop")
+                document
+                  .getElementById("cropModal")
+                  .classList.replace("hidden", "flex");
+            };
+          };
+          reader.readAsDataURL(file);
+          return; // Stop here, backend is not needed!
+        }
+
+        // 2. Send to Backend Processing
+        convertBtn.innerText = "Processing...";
+        convertBtn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("tool", tool);
+        formData.append("extra_param", extraInput.value.trim());
+
+        try {
+          const response = await fetch("/image-process", {
+            method: "POST",
+            body: formData,
+          });
+          if (!response.ok) throw new Error("Server error");
+
+          const blob = await response.blob();
+          const url = URL.createObjectURL(blob);
+
+          const baseName = file.name.substring(0, file.name.lastIndexOf("."));
+
+          // Set correct extension
+          let newExt = "png";
+          if (
+            tool === "png-to-jpg" ||
+            tool === "compress" ||
+            tool === "compress-exact" || tool === "heic-to-jpg"
+          )
+            newExt = "jpg";
+
+          if (tool === "to-webp") newExt = "webp"; // for webp tool
+          
+
+          triggerDownload(url, `converted_${baseName}.${newExt}`);
+        } catch (err) {
+          alert("Conversion failed. Please try again.");
+        } finally {
+          convertBtn.disabled = false;
+          setTimeout(() => {
+            convertBtn.innerText = "Process Image";
+          }, 2500);
+        }
+      };
+
+      // --- HELPER: Trigger Native Download ---
+      function triggerDownload(url, filename) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        convertBtn.innerText = "Success! Downloaded ✓";
+      }
+
+      // --- RESIZE LOGIC ---
+      const resizeModal = document.getElementById("resizeModal");
+      const widthIn = document.getElementById("widthInput");
+      const heightIn = document.getElementById("heightInput");
+      const aspectCheck = document.getElementById("aspectRatio");
+
+      function openResizeModal() {
+        originalRatio = currentImage.width / currentImage.height;
+        widthIn.value = currentImage.width;
+        heightIn.value = currentImage.height;
+        resizeModal.classList.replace("hidden", "flex");
+      }
+
+      widthIn.oninput = () => {
+        if (aspectCheck.checked)
+          heightIn.value = Math.round(widthIn.value / originalRatio);
+      };
+      heightIn.oninput = () => {
+        if (aspectCheck.checked)
+          widthIn.value = Math.round(heightIn.value * originalRatio);
+      };
+
+      const closeResize = () => resizeModal.classList.replace("flex", "hidden");
+      document.getElementById("closeResize").onclick = closeResize;
+      document.getElementById("btnCancelResize").onclick = closeResize;
+
+      document.getElementById("btnApplyResize").onclick = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = parseInt(widthIn.value);
+        canvas.height = parseInt(heightIn.value);
+        canvas
+          .getContext("2d")
+          .drawImage(currentImage, 0, 0, canvas.width, canvas.height);
+        triggerDownload(
+          canvas.toDataURL("image/png"),
+          `resized_${fileInput.files[0].name}.png`,
+        );
+        closeResize();
+      };
+
+      // --- ROTATE LOGIC ---
+      const rotateModal = document.getElementById("rotateModal");
+      const rotCanvas = document.getElementById("rotateCanvas");
+      const rotCtx = rotCanvas.getContext("2d");
+      const rotSlider = document.getElementById("rotateSlider");
+      const angleVal = document.getElementById("angleValue");
+
+      function openRotateModal() {
+        const maxW = 300,
+          maxH = 300;
+        const ratio = Math.min(
+          maxW / currentImage.width,
+          maxH / currentImage.height,
+        );
+        rotCanvas.width = currentImage.width * ratio;
+        rotCanvas.height = currentImage.height * ratio;
+
+        currentRotation = 0;
+        scaleX = 1;
+        scaleY = 1;
+        rotSlider.value = 0;
+        angleVal.innerText = "0";
+
+        drawRotatePreview();
+        rotateModal.classList.replace("hidden", "flex");
+      }
+
+      function drawRotatePreview() {
+        rotCtx.clearRect(0, 0, rotCanvas.width, rotCanvas.height);
+        rotCtx.save();
+        rotCtx.translate(rotCanvas.width / 2, rotCanvas.height / 2);
+        rotCtx.rotate((currentRotation * Math.PI) / 180);
+        rotCtx.scale(scaleX, scaleY);
+        rotCtx.drawImage(
+          currentImage,
+          -rotCanvas.width / 2,
+          -rotCanvas.height / 2,
+          rotCanvas.width,
+          rotCanvas.height,
+        );
+        rotCtx.restore();
+      }
+
+      rotSlider.oninput = (e) => {
+        currentRotation = parseInt(e.target.value);
+        angleVal.innerText = currentRotation;
+        drawRotatePreview();
+      };
+      document.getElementById("btnRot90").onclick = () => {
+        currentRotation = (currentRotation + 90) % 360;
+        rotSlider.value = currentRotation;
+        angleVal.innerText = currentRotation;
+        drawRotatePreview();
+      };
+      document.getElementById("btnRotMin90").onclick = () => {
+        currentRotation = (currentRotation - 90) % 360;
+        rotSlider.value = currentRotation;
+        angleVal.innerText = currentRotation;
+        drawRotatePreview();
+      };
+      document.getElementById("btnFlipH").onclick = () => {
+        scaleX *= -1;
+        drawRotatePreview();
+      };
+      document.getElementById("btnFlipV").onclick = () => {
+        scaleY *= -1;
+        drawRotatePreview();
+      };
+
+      const closeRotate = () => rotateModal.classList.replace("flex", "hidden");
+      document.getElementById("closeRotate").onclick = closeRotate;
+      document.getElementById("btnCancelRotate").onclick = closeRotate;
+
+      document.getElementById("btnApplyRotate").onclick = () => {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const rad = (currentRotation * Math.PI) / 180;
+        const absCos = Math.abs(Math.cos(rad)),
+          absSin = Math.abs(Math.sin(rad));
+        const newW = currentImage.width * absCos + currentImage.height * absSin;
+        const newH = currentImage.width * absSin + currentImage.height * absCos;
+
+        canvas.width = newW;
+        canvas.height = newH;
+        ctx.save();
+        ctx.translate(newW / 2, newH / 2);
+        ctx.rotate(rad);
+        ctx.scale(scaleX, scaleY);
+        ctx.drawImage(
+          currentImage,
+          -currentImage.width / 2,
+          -currentImage.height / 2,
+        );
+        ctx.restore();
+
+        triggerDownload(
+          canvas.toDataURL("image/png"),
+          `rotated_${fileInput.files[0].name}.png`,
+        );
+        closeRotate();
+      };
+
+      // --- CROP LOGIC (Fast Center Crop) ---
+      const cropModal = document.getElementById("cropModal");
+      const closeCrop = () => cropModal.classList.replace("flex", "hidden");
+      document.getElementById("btnCancelCrop").onclick = closeCrop;
+
+      function applyCrop(ratioW, ratioH) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        let cropWidth = currentImage.width;
+        let cropHeight = currentImage.width * (ratioH / ratioW);
+
+        if (cropHeight > currentImage.height) {
+          cropHeight = currentImage.height;
+          cropWidth = currentImage.height * (ratioW / ratioH);
+        }
+
+        canvas.width = cropWidth;
+        canvas.height = cropHeight;
+        const startX = (currentImage.width - cropWidth) / 2;
+        const startY = (currentImage.height - cropHeight) / 2;
+
+        ctx.drawImage(
+          currentImage,
+          startX,
+          startY,
+          cropWidth,
+          cropHeight,
+          0,
+          0,
+          cropWidth,
+          cropHeight,
+        );
+        triggerDownload(
+          canvas.toDataURL("image/png"),
+          `cropped_${fileInput.files[0].name}.png`,
+        );
+        closeCrop();
+      }
+
+      document.getElementById("btnCropSquare").onclick = () => applyCrop(1, 1);
+      document.getElementById("btnCropLand").onclick = () => applyCrop(16, 9);
+      document.getElementById("btnCropPort").onclick = () => applyCrop(9, 16);
+    </script>
+  </body>
+</html>
