@@ -42,6 +42,10 @@ async def pdf_convert(request: Request):
 async def image_page(request: Request):
     return templates.TemplateResponse("Image_Convert.html", {"request": request})
 
+@app.get("/about", response_class=HTMLResponse)
+async def about_page(request: Request):
+    return templates.TemplateResponse("About.html", {"request": request})
+
 @app.get("/resize-image", response_class=HTMLResponse)
 async def resize_page(request: Request):
     return templates.TemplateResponse("resize-editor.html", {"request": request})
