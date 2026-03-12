@@ -141,8 +141,8 @@
       </div>
     </nav>
 
-    <div class="max-w-3xl mx-auto px-6 py-12">
-      <div class="bg-slate-800/60 border border-slate-700 rounded-3xl p-8">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <div class="bg-slate-800/60 border border-slate-700 rounded-3xl p-6 sm:p-8">
         <input type="file" id="fileInput" accept="image/*" hidden />
 
         <div
@@ -173,7 +173,7 @@
       class="fixed inset-0 modal-overlay hidden items-center justify-center z-50 p-4"
     >
       <div
-        class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-3xl shadow-2xl relative"
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-6 w-full max-w-lg shadow-2xl relative"
       >
         <!-- Header -->
         <div class="flex justify-between items-center mb-4">
@@ -188,7 +188,7 @@
 
         <!-- Preview Area -->
         <div
-          class="bg-slate-900 rounded-xl h-105 flex items-center justify-center border border-slate-700 mb-6"
+          class="bg-slate-900 rounded-xl h-64 sm:h-96 flex items-center justify-center border border-slate-700 mb-6"
         >
           <canvas id="cropCanvas" class="max-w-full max-h-full"></canvas>
         </div>
@@ -216,6 +216,23 @@
     >
       © 2026 ImageMorph. Intelligent Visual Tools. Made in INDIA.
     </footer>
+
+    <script>
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.querySelector('#mobile-menu-button svg.block');
+      const closeIcon = document.querySelector('#mobile-menu-button svg.hidden');
+
+      if (mobileMenuButton) {
+          mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            openIcon.classList.toggle('block');
+            closeIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('block');
+          });
+      }
+    </script>
 
     <script>
       const closeBtn = document.getElementById("closeCropModal");

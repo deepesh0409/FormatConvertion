@@ -10,19 +10,71 @@
     </style>
 </head>
 <body class="bg-slate-900 text-white min-h-screen">
-    <!-- Navbar (Same as your original) -->
-    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <a href="/" class="text-2xl font-bold tracking-wide">
-                    <h1>File <span class="text-indigo-500">Converter</span></h1>
-                </a>
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/95 backdrop-blur relative">
+      <div class="mx-auto max-w-7xl px-6">
+        <div class="flex h-16 items-center justify-between">
+          
+          <!-- Left Side: Logo & Icon -->
+          <div class="flex items-center gap-2 shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500">
+              <path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <path d="M3 15h6"></path>
+              <path d="M6 12v6"></path>
+            </svg>
+            <a href="/" class="text-2xl font-extrabold tracking-wide hover:text-indigo-400 transition-colors">
+              <h1>Format<span class="text-indigo-500">Converter</span></h1>
+            </a>
+          </div>
+
+          <!-- Right Side: Desktop Menu & Buttons -->
+          <div class="hidden md:flex items-center space-x-8">
+            <div class="flex space-x-6">
+              <a href="/pdf_Convertion" class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition">PDF Tools</a>
+              <a href="/Image_Convertion" class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition">Image Tools</a>
+              <a href="/about" class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition">About</a>
             </div>
+            
+            <div class="h-6 w-px bg-slate-700"></div>
+
+            <div class="flex items-center space-x-4">
+              <button class="text-sm font-medium text-slate-300 hover:text-white transition">Sign In</button>
+              <button class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white">Get Started Free</button>
+            </div>
+          </div>
+
+          <!-- Mobile Hamburger Button -->
+          <div class="-mr-2 flex md:hidden">
+            <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 focus:outline-none transition">
+              <svg id="menu-icon-open" class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <svg id="menu-icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
         </div>
+      </div>
+
+      <!-- FLOATING Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden md:hidden absolute left-0 top-full w-full bg-slate-900 border-b border-slate-700 shadow-2xl">
+        <div class="px-4 pt-4 pb-4 space-y-2">
+          <a href="/pdf_Convertion" class="text-slate-300 hover:text-white hover:bg-slate-800 block px-4 py-3 rounded-xl text-base font-medium transition">PDF Tools</a>
+          <a href="/Image_Convertion" class="text-slate-300 hover:text-white hover:bg-slate-800 block px-4 py-3 rounded-xl text-base font-medium transition">Image Tools</a>
+          <a href="/about" class="text-slate-300 hover:text-white hover:bg-slate-800 block px-4 py-3 rounded-xl text-base font-medium transition">About</a>
+        </div>
+        <div class="pt-4 pb-6 border-t border-slate-700 px-5 space-y-3">
+          <button class="w-full px-4 py-3 text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition border border-slate-700 rounded-xl">Sign In</button>
+          <button class="w-full px-5 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white">Get Started Free</button>
+        </div>
+      </div>
     </nav>
 
-    <div class="max-w-4xl mx-auto px-6 py-20">
-        <div class="bg-slate-800/60 border border-slate-700 rounded-3xl p-10 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-20">
+        <div class="bg-slate-800/60 border border-slate-700 rounded-3xl p-6 sm:p-10 text-center">
             <h2 class="text-2xl font-bold mb-6">Resize Image Workspace</h2>
 
             <input type="file" id="imageInput" accept="image/*" hidden />
@@ -157,6 +209,23 @@
             
             closeModal();
         };
+    </script>
+
+    <script>
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const openIcon = document.querySelector('#mobile-menu-button svg.block');
+      const closeIcon = document.querySelector('#mobile-menu-button svg.hidden');
+
+      if (mobileMenuButton) {
+          mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            openIcon.classList.toggle('hidden');
+            openIcon.classList.toggle('block');
+            closeIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('block');
+          });
+      }
     </script>
 </body>
 </html>

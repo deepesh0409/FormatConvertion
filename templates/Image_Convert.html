@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image FormatConverter – Professional Image Tools</title>
-
-    <!-- Emoji Favicon -->
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖼️</text></svg>"
@@ -13,16 +11,15 @@
     <link href="/Static/output.css" rel="stylesheet" />
   </head>
 
+  <!-- ADDED flex flex-col TO BODY SO NAVBAR STICKS PROPERLY -->
   <body
-    class="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen"
-  >
-    <!-- Navbar -->
-    <nav
-      class="sticky top-0 z-50 border-b border-slate-700/50 bg-slate-900/80 backdrop-blur"
-    >
-      <div class="mx-auto max-w-7xl px-6">
-        <div class="flex h-16 items-center justify-between">
-          <div class="flex items-center gap-2 shrink-0">
+    class="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-screen flex flex-col">
+    <!-- BULLETPROOF NAVBAR -->
+    <header class="sticky top-0 z-[100] w-full bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <a href="/" class="flex items-center gap-2 shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="28"
@@ -42,368 +39,418 @@
               <path d="M3 15h6"></path>
               <path d="M6 12v6"></path>
             </svg>
+            <span
+              class="text-2xl font-extrabold tracking-wide text-white hover:text-indigo-400 transition-colors"
+            >
+              Format<span class="text-indigo-500">Converter</span>
+            </span>
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-6">
             <a
-              href="/"
-              class="text-2xl font-extrabold tracking-wide hover:text-indigo-400 transition-colors"
+              href="/pdf_Convertion"
+              class="text-slate-300 hover:text-white transition text-sm font-medium"
+              >PDF Tools</a
             >
-              <h1>Format<span class="text-indigo-500">Converter</span></h1>
-            </a>
-
-            <div
-              class="md:flex ml-10 flex-1 justify-center space-x-8 text-slate-30"
+            <a
+              href="/Image_Convertion"
+              class="text-slate-300 hover:text-white transition text-sm font-medium"
+              >Image Tools</a
             >
-              <a
-                href="/pdf_Convertion"
-                class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
-                >PDF Tools</a
-              >
-              <a
-                href="/Image_Convertion"
-                class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
-                >Image Tools</a
-              >
-              <a
-                href="/about"
-                class="text-slate-300 hover:text-indigo-400 px-3 py-2 rounded-md text-sm font-medium"
-                >About</a
-              >
-            </div>
-
-            <div class="md:flex items-center space-x-4">
-              <!-- <button
-              class="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition"
+            <a
+              href="/about"
+              class="text-slate-300 hover:text-white transition text-sm font-medium"
+              >About</a
+            >
+            <div class="h-6 w-px bg-slate-700"></div>
+            <button
+              class="text-sm font-medium text-slate-300 hover:text-white transition"
             >
               Sign In
-            </button> -->
-              <button
-                class="ml-4 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
-              >
-                Get Started Free
-              </button>
-            </div>
+            </button>
+            <button
+              class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
+            >
+              Get Started Free
+            </button>
           </div>
 
-          <div class="hidden md:flex items-center space-x-8">
-            <div class="flex space-x-6">
-              <a
-                href="/pdf_Convertion"
-                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
-                >PDF Tools</a
+          <!-- Mobile Hamburger -->
+          <div class="flex md:hidden items-center">
+            <button
+              id="mobile-menu-button"
+              class="text-slate-300 hover:text-white p-2 focus:outline-none"
+            >
+              <svg
+                id="menu-icon-open"
+                class="w-6 h-6 block"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-              <a
-                href="/Image_Convertion"
-                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
-                >Image Tools</a
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+              <svg
+                id="menu-icon-close"
+                class="w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-              <a
-                href="#"
-                class="text-slate-300 hover:text-indigo-400 text-sm font-medium transition"
-                >About</a
-              >
-            </div>
-            <div class="h-6 w-px bg-slate-700"></div>
-            <div class="flex items-center space-x-4">
-              <button
-                class="text-sm font-medium text-slate-300 hover:text-white transition"
-              >
-                Sign In
-              </button>
-              <button
-                class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition text-sm font-semibold text-white"
-              >
-                Get Started Free
-              </button>
-            </div>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section
-      class="max-w-6xl mx-auto px-6 pt-12 grid md:grid-cols-2 gap-12 items-center"
-    >
-      <div>
-        <h2 id="toolTitle" class="text-5xl font-extrabold leading-tight">
-          Next-Gen <span class="text-indigo-400">Image Editing</span> with AI
-        </h2>
-        <p id="toolDesc" class="mt-6 text-slate-300 text-lg">
-          Convert formats, compress without quality loss, and resize images
-          instantly using our browser-based neural tools.
-        </p>
-        <div class="mt-8 flex gap-6 text-sm text-slate-400">
-          <span>✓ JPG, PNG, WebP</span>
-          <span>✓ Private Processing</span>
-          <span>✓ Instant Download</span>
-        </div>
-      </div>
-
+      <!-- Mobile Menu Dropdown -->
       <div
-        class="bg-slate-800/60 border border-slate-700 backdrop-blur rounded-3xl p-8 shadow-xl"
+        id="mobile-menu"
+        class="hidden md:hidden absolute top-16 left-0 w-full bg-slate-900 border-b border-slate-700 shadow-2xl"
       >
-        <div
-          class="mb-6 flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/20 w-fit px-4 py-2 rounded-full"
-        >
-          <span id="toolBadgeIcon" class="text-xl"></span>
-          <span
-            id="toolBadgeName"
-            class="text-sm font-bold text-indigo-400 uppercase tracking-widest"
-          ></span>
+        <div class="px-4 py-4 space-y-2">
+          <a
+            href="/pdf_Convertion"
+            class="block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"
+            >PDF Tools</a
+          >
+          <a
+            href="/Image_Convertion"
+            class="block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"
+            >Image Tools</a
+          >
+          <a
+            href="/about"
+            class="block px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"
+            >About</a
+          >
+          <div class="h-px w-full bg-slate-800 my-2"></div>
+          <button
+            class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition"
+          >
+            Sign In
+          </button>
+          <button
+            class="w-full mt-2 px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold shadow-lg shadow-indigo-500/20 transition"
+          >
+            Get Started Free
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="grow">
+      <!-- Hero Section -->
+      <section
+        class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 grid md:grid-cols-2 gap-8 md:gap-12 items-center"
+      >
+        <div>
+          <h2
+            id="toolTitle"
+            class="text-4xl sm:text-5xl font-extrabold leading-tight"
+          >
+            Next-Gen <span class="text-indigo-400">Image Editing</span> with AI
+          </h2>
+          <p
+            id="toolDesc"
+            class="mt-4 md:mt-6 text-slate-300 text-base md:text-lg"
+          >
+            Convert formats, compress without quality loss, and resize images
+            instantly using our browser-based neural tools.
+          </p>
+          <div class="mt-6 md:mt-8 flex flex-wrap gap-4 text-sm text-slate-400">
+            <span>✓ JPG, PNG, WebP</span>
+            <span>✓ Private Processing</span>
+            <span>✓ Instant Download</span>
+          </div>
         </div>
 
         <div
-          id="dropZone"
-          class="border-2 border-dashed border-slate-500 rounded-2xl p-10 text-center cursor-pointer hover:border-indigo-400 transition group"
+          class="bg-slate-800/60 border border-slate-700 backdrop-blur rounded-3xl p-6 sm:p-8 shadow-xl"
         >
           <div
-            id="toolIcon"
-            class="text-4xl mb-3 group-hover:scale-110 transition-transform"
+            class="mb-6 flex items-center gap-3 bg-indigo-500/10 border border-indigo-500/20 w-fit px-4 py-2 rounded-full"
           >
-            🖼️
+            <span id="toolBadgeIcon" class="text-xl"></span>
+            <span
+              id="toolBadgeName"
+              class="text-xs sm:text-sm font-bold text-indigo-400 uppercase tracking-widest"
+            ></span>
           </div>
-          <input type="file" id="imageInput" class="hidden" accept="image/*" />
-          <p id="fileNameDisplay" class="text-lg font-semibold">
-            Drop your image here
-          </p>
-          <p class="text-slate-400 mt-2 text-sm">
-            Supports up to 50MB per file
-          </p>
-        </div>
 
-        <!-- NEW: Dynamic Input Field for Watermarks -->
-        <div id="extraInputContainer" class="hidden mt-4">
-          <input
-            type="text"
-            id="extraInput"
-            placeholder="Enter text here..."
-            class="w-full bg-slate-900 border border-slate-600 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition"
-          />
-        </div>
-
-        <button
-          id="convertBtn"
-          class="w-full mt-6 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-bold text-lg shadow-lg shadow-indigo-500/30"
-        >
-          Process Image
-        </button>
-
-        <div id="suggestionGrid" class="mt-8 grid grid-cols-2 gap-4"></div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="max-w-7xl mx-auto px-6 py-12">
-      <div class="text-center mb-16 mt-16 border-t border-slate-800 pt-16">
-        <h2 class="text-4xl font-extrabold mb-4">Powerful Image Tools</h2>
-        <p class="text-slate-400 max-w-3xl mx-auto text-lg">
-          Fast, secure, and professional quality.
-        </p>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <a
-          href="/Image_Convertion?tool=compress"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">📉</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Compress Image
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Reduce file size by up to 80% without losing visual quality.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=rotate"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">🔄</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Rotate Image
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Manual free-angle rotation and vertical/horizontal flipping.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=jpg-to-png"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">🖼️</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            JPG to PNG
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Convert JPG images to PNG format with high accuracy.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=png-to-jpg"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">📸</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            PNG to JPG
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Convert PNG images to JPG format smoothly.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=resize"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-3">📐</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Resize Image
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Define exact dimensions by keeping the aspect ratio.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=crop"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-3">✂️</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Crop Image
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Crop to perfect square (1:1) or standard ratios.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=upscale"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-2">🔍</div>
-          <h3 class="text-md font-semibold mb-2 group-hover:text-indigo-400">
-            AI Image Upscaler
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Increase image resolution and clarity using neural networks.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=bg-remove"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">✂️</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Remove Background
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Remove backgrounds from images instantly using AI edge detection.
-          </p>
-        </a>
-
-        <!-- NEW: Convert to WebP -->
-        <a href="/Image_Convertion?tool=to-webp" class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all">
-          <div class="text-3xl mb-4">🕸️</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">Convert to WebP</h3>
-          <p class="text-slate-400 text-sm">Convert JPG or PNG to WebP for faster website loading.</p>
-        </a>
-
-        <!-- NEW: Extract Text (OCR) -->
-        
-        
-        <!-- NEW: HEIC to JPG -->
-        <a
-          href="/Image_Convertion?tool=heic-to-jpg"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">📱</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            HEIC to JPG
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Convert Apple iPhone photos (HEIC) into standard JPGs.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=blur-face"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-3">👤</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Blur Face
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Protect privacy with automatic face blurring.
-          </p>
-        </a>
-
-        <!-- NEW: WATERMARK TOOLS -->
-        <a
-          href="/Image_Convertion?tool=watermark"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-3">🖋️</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Watermark Image
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Stamp custom text over your images to protect them.
-          </p>
-        </a>
-        <a
-          href="/Image_Convertion?tool=wm-remover"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-3">🧼</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Watermark Remover
-          </h3>
-          <p class="text-slate-400 text-sm">
-            AI-powered inpainting to erase unwanted watermarks.
-          </p>
-        </a>
-
-        <a
-          href="/Image_Convertion?tool=compress-exact"
-          class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <div class="text-3xl mb-4">🗜️</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            Compress to Exact KB
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Shrink image size to a specific limit (e.g., Under 50KB).
-          </p>
-        </a>
-
-        <!-- Coming soon items left -->
-        <div
-          class="tool-card-relative group relative bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
-        >
-          <span class="coming-soon-overlay"
-            ><h2 class="coming-soon-text">COMING SOON</h2></span
+          <div
+            id="dropZone"
+            class="border-2 border-dashed border-slate-500 rounded-2xl p-8 sm:p-10 text-center cursor-pointer hover:border-indigo-400 transition group"
           >
-          <div class="text-3xl mb-3">🌐</div>
-          <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
-            HTML to Image
-          </h3>
-          <p class="text-slate-400 text-sm">
-            Turn any webpage into a high-quality PNG.
+            <div
+              id="toolIcon"
+              class="text-4xl mb-3 group-hover:scale-110 transition-transform"
+            >
+              🖼️
+            </div>
+            <input
+              type="file"
+              id="imageInput"
+              class="hidden"
+              accept="image/*"
+            />
+            <p
+              id="fileNameDisplay"
+              class="text-base sm:text-lg font-semibold break-all px-2"
+            >
+              Drop your image here
+            </p>
+            <p class="text-slate-400 mt-2 text-xs sm:text-sm">
+              Supports up to 50MB per file
+            </p>
+          </div>
+
+          <div id="extraInputContainer" class="hidden mt-4">
+            <input
+              type="text"
+              id="extraInput"
+              placeholder="Enter text here..."
+              class="w-full bg-slate-900 border border-slate-600 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition"
+            />
+          </div>
+
+          <button
+            id="convertBtn"
+            class="w-full mt-6 px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 transition font-bold text-base sm:text-lg shadow-lg shadow-indigo-500/30"
+          >
+            Process Image
+          </button>
+
+          <div
+            id="suggestionGrid"
+            class="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section
+        class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20 mt-12 md:mt-16 border-t border-slate-800"
+      >
+        <div class="text-center mb-12 md:mb-16">
+          <h2 class="text-3xl md:text-4xl font-extrabold mb-4">
+            Powerful Image Tools
+          </h2>
+          <p class="text-slate-400 max-w-3xl mx-auto text-base md:text-lg">
+            Fast, secure, and professional quality.
           </p>
         </div>
-      </div>
-    </section>
 
-    <!-- Footer -->
-  <footer class="border-t border-slate-700 py-10 text-center text-slate-400 mt-auto">
-    <p class="mb-2">© 2026 FormatConverter. All rights reserved.</p>
-    <p class="text-sm">Made with ❤️ in INDIA.</p>
-  </footer>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <a
+            href="/Image_Convertion?tool=compress"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">📉</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Compress Image
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Reduce file size by up to 80% without losing visual quality.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=rotate"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">🔄</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Rotate Image
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Manual free-angle rotation and vertical/horizontal flipping.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=jpg-to-png"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">🖼️</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              JPG to PNG
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Convert JPG images to PNG format with high accuracy.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=png-to-jpg"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">📸</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              PNG to JPG
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Convert PNG images to JPG format smoothly.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=resize"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-3">📐</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Resize Image
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Define exact dimensions by keeping the aspect ratio.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=crop"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-3">✂️</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Crop Image
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Crop to perfect square (1:1) or standard ratios.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=upscale"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-2">🔍</div>
+            <h3 class="text-md font-semibold mb-2 group-hover:text-indigo-400">
+              AI Image Upscaler
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Increase image resolution and clarity using neural networks.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=bg-remove"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">✂️</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Remove Background
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Remove backgrounds from images instantly using AI edge detection.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=to-webp"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">🕸️</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Convert to WebP
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Convert JPG or PNG to WebP for faster website loading.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=heic-to-jpg"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">📱</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              HEIC to JPG
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Convert Apple iPhone photos (HEIC) into standard JPGs.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=blur-face"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-3">👤</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Blur Face
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Protect privacy with automatic face blurring.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=watermark"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-3">🖋️</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Watermark Image
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Stamp custom text over your images to protect them.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=wm-remover"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-3">🧼</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Watermark Remover
+            </h3>
+            <p class="text-slate-400 text-sm">
+              AI-powered inpainting to erase unwanted watermarks.
+            </p>
+          </a>
+          <a
+            href="/Image_Convertion?tool=compress-exact"
+            class="group bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <div class="text-3xl mb-4">🗜️</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              Compress to Exact KB
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Shrink image size to a specific limit (e.g., Under 50KB).
+            </p>
+          </a>
+
+          <div
+            class="tool-card-relative group relative bg-slate-800/60 rounded-2xl p-6 border border-slate-700 hover:border-indigo-500 transition-all"
+          >
+            <span class="coming-soon-overlay"
+              ><h2 class="coming-soon-text">COMING SOON</h2></span
+            >
+            <div class="text-3xl mb-3">🌐</div>
+            <h3 class="text-lg font-semibold mb-2 group-hover:text-indigo-400">
+              HTML to Image
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Turn any webpage into a high-quality PNG.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="border-t border-slate-700 py-8 md:py-10 text-center text-slate-400 mt-auto"
+    >
+      <p class="mb-2 text-sm md:text-base">
+        © 2026 FormatConverter. All rights reserved.
+      </p>
+      <p class="text-xs md:text-sm">Made with ❤️ in INDIA.</p>
+    </footer>
 
     <!-- ================= MODALS ================= -->
 
@@ -493,7 +540,7 @@
             &times;
           </button>
         </div>
-        <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <div
             class="bg-slate-900 rounded-xl border border-slate-700 p-2 h-80 flex items-center justify-center overflow-hidden"
           >
@@ -570,7 +617,6 @@
         <p class="text-sm text-slate-400 mb-6">
           Choose a ratio to crop the center of your image perfectly.
         </p>
-
         <div class="space-y-3 mb-6">
           <button
             id="btnCropSquare"
@@ -597,6 +643,26 @@
         >
           Cancel
         </button>
+      </div>
+    </div>
+
+    <!-- Processing Overlay -->
+    <div
+      id="processingOverlay"
+      class="fixed inset-0 bg-slate-900/90 backdrop-blur-sm hidden items-center justify-center z-[110]"
+    >
+      <div
+        class="bg-slate-800 border border-slate-700 rounded-3xl p-8 sm:p-10 w-[90%] max-w-md text-center shadow-2xl"
+      >
+        <div class="flex justify-center mb-6">
+          <div
+            class="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"
+          ></div>
+        </div>
+        <h3 class="text-lg md:text-xl font-bold mb-2">Processing your Image</h3>
+        <p class="text-slate-400 text-sm">
+          Please wait while we work our magic...
+        </p>
       </div>
     </div>
 
@@ -657,8 +723,6 @@
           desc: "Enhance resolution and sharpen details.",
           related: ["bg-remove", "compress", "crop"],
         },
-
-        // NEW CONFIGS
         watermark: {
           name: "Watermark Image",
           icon: "🖋️",
@@ -685,13 +749,12 @@
           desc: "Convert iPhone HEIC photos to standard JPG format.",
           related: ["png-to-jpg", "compress", "resize"],
         },
-        "to-webp": { 
-              name: "Convert to WebP", 
-              icon: "🕸️", 
-              desc: "Convert your image to the next-gen WebP format for faster website loading.", 
-              related:["compress", "resize", "jpg-to-png"] 
+        "to-webp": {
+          name: "Convert to WebP",
+          icon: "🕸️",
+          desc: "Convert your image to the next-gen WebP format for faster website loading.",
+          related: ["compress", "resize", "jpg-to-png"],
         },
-         
       };
 
       window.onload = () => {
@@ -706,7 +769,6 @@
         document.getElementById("toolBadgeName").innerText = config.name;
         document.getElementById("toolBadgeIcon").innerText = config.icon;
 
-        // Toggle extra input field for watermark tool
         const extraInputContainer = document.getElementById(
           "extraInputContainer",
         );
@@ -735,11 +797,7 @@
           config.related.forEach((key) => {
             const r = toolConfig[key];
             if (r) {
-              grid.innerHTML += `
-                      <a href="/Image_Convertion?tool=${key}" class="p-4 rounded-xl bg-slate-800/40 border border-slate-700 hover:border-indigo-500 transition flex items-center gap-3">
-                         <span class="text-xl">${r.icon}</span>
-                         <span class="text-xs font-bold uppercase text-slate-300">${r.name}</span>
-                      </a>`;
+              grid.innerHTML += `<a href="/Image_Convertion?tool=${key}" class="p-3 sm:p-4 rounded-xl bg-slate-800/40 border border-slate-700 hover:border-indigo-500 transition flex items-center gap-3"><span class="text-xl">${r.icon}</span><span class="text-xs sm:text-sm font-bold uppercase text-slate-300">${r.name}</span></a>`;
             }
           });
         }
@@ -749,13 +807,11 @@
       const fileInput = document.getElementById("imageInput");
       const fileNameDisplay = document.getElementById("fileNameDisplay");
       const convertBtn = document.getElementById("convertBtn");
-
       const extraInputContainer = document.getElementById(
         "extraInputContainer",
       );
       const extraInput = document.getElementById("extraInput");
 
-      // Shared memory for frontend tools
       let currentImage = new Image();
       let originalRatio = 1;
       let currentRotation = 0;
@@ -763,16 +819,13 @@
       let scaleY = 1;
 
       dropZone.onclick = () => fileInput.click();
-
       dropZone.addEventListener("dragover", (e) => {
         e.preventDefault();
         dropZone.classList.add("border-indigo-500", "bg-slate-700/40");
       });
-
       dropZone.addEventListener("dragleave", () => {
         dropZone.classList.remove("border-indigo-500", "bg-slate-700/40");
       });
-
       dropZone.addEventListener("drop", (e) => {
         e.preventDefault();
         dropZone.classList.remove("border-indigo-500", "bg-slate-700/40");
@@ -799,8 +852,6 @@
           alert("Please upload an image first!");
           return;
         }
-
-        // Validate extra text field if it's visible
         if (
           !extraInputContainer.classList.contains("hidden") &&
           extraInput.value.trim() === ""
@@ -810,7 +861,6 @@
           return;
         }
 
-        // 1. Check if tool is Frontend Canvas Tool (Resize, Rotate, Crop)
         if (tool === "resize" || tool === "rotate" || tool === "crop") {
           const reader = new FileReader();
           reader.onload = (event) => {
@@ -825,11 +875,11 @@
             };
           };
           reader.readAsDataURL(file);
-          return; // Stop here, backend is not needed!
+          return;
         }
 
-        // 2. Send to Backend Processing
-        convertBtn.innerText = "Processing...";
+        const overlay = document.getElementById("processingOverlay");
+        overlay.classList.replace("hidden", "flex");
         convertBtn.disabled = true;
 
         const formData = new FormData();
@@ -842,37 +892,34 @@
             method: "POST",
             body: formData,
           });
-          if (!response.ok) throw new Error("Server error");
+          if (!response.ok) {
+            const errData = await response.json().catch(() => ({}));
+            throw new Error(errData.error || "Server error");
+          }
 
           const blob = await response.blob();
           const url = URL.createObjectURL(blob);
-
           const baseName = file.name.substring(0, file.name.lastIndexOf("."));
 
-          // Set correct extension
           let newExt = "png";
           if (
             tool === "png-to-jpg" ||
             tool === "compress" ||
-            tool === "compress-exact" || tool === "heic-to-jpg"
+            tool === "compress-exact" ||
+            tool === "heic-to-jpg"
           )
             newExt = "jpg";
-
-          if (tool === "to-webp") newExt = "webp"; // for webp tool
-          
+          if (tool === "to-webp") newExt = "webp";
 
           triggerDownload(url, `converted_${baseName}.${newExt}`);
         } catch (err) {
-          alert("Conversion failed. Please try again.");
+          alert("Error: " + err.message);
         } finally {
+          overlay.classList.replace("flex", "hidden");
           convertBtn.disabled = false;
-          setTimeout(() => {
-            convertBtn.innerText = "Process Image";
-          }, 2500);
         }
       };
 
-      // --- HELPER: Trigger Native Download ---
       function triggerDownload(url, filename) {
         const a = document.createElement("a");
         a.href = url;
@@ -881,9 +928,12 @@
         a.click();
         a.remove();
         convertBtn.innerText = "Success! Downloaded ✓";
+        setTimeout(() => {
+          convertBtn.innerText = "Process Image";
+        }, 2500);
       }
 
-      // --- RESIZE LOGIC ---
+      // MODAL FUNCTIONS
       const resizeModal = document.getElementById("resizeModal");
       const widthIn = document.getElementById("widthInput");
       const heightIn = document.getElementById("heightInput");
@@ -895,7 +945,6 @@
         heightIn.value = currentImage.height;
         resizeModal.classList.replace("hidden", "flex");
       }
-
       widthIn.oninput = () => {
         if (aspectCheck.checked)
           heightIn.value = Math.round(widthIn.value / originalRatio);
@@ -904,11 +953,9 @@
         if (aspectCheck.checked)
           widthIn.value = Math.round(heightIn.value * originalRatio);
       };
-
       const closeResize = () => resizeModal.classList.replace("flex", "hidden");
       document.getElementById("closeResize").onclick = closeResize;
       document.getElementById("btnCancelResize").onclick = closeResize;
-
       document.getElementById("btnApplyResize").onclick = () => {
         const canvas = document.createElement("canvas");
         canvas.width = parseInt(widthIn.value);
@@ -923,7 +970,6 @@
         closeResize();
       };
 
-      // --- ROTATE LOGIC ---
       const rotateModal = document.getElementById("rotateModal");
       const rotCanvas = document.getElementById("rotateCanvas");
       const rotCtx = rotCanvas.getContext("2d");
@@ -931,25 +977,20 @@
       const angleVal = document.getElementById("angleValue");
 
       function openRotateModal() {
-        const maxW = 300,
-          maxH = 300;
         const ratio = Math.min(
-          maxW / currentImage.width,
-          maxH / currentImage.height,
+          300 / currentImage.width,
+          300 / currentImage.height,
         );
         rotCanvas.width = currentImage.width * ratio;
         rotCanvas.height = currentImage.height * ratio;
-
         currentRotation = 0;
         scaleX = 1;
         scaleY = 1;
         rotSlider.value = 0;
         angleVal.innerText = "0";
-
         drawRotatePreview();
         rotateModal.classList.replace("hidden", "flex");
       }
-
       function drawRotatePreview() {
         rotCtx.clearRect(0, 0, rotCanvas.width, rotCanvas.height);
         rotCtx.save();
@@ -965,7 +1006,6 @@
         );
         rotCtx.restore();
       }
-
       rotSlider.oninput = (e) => {
         currentRotation = parseInt(e.target.value);
         angleVal.innerText = currentRotation;
@@ -1004,7 +1044,6 @@
           absSin = Math.abs(Math.sin(rad));
         const newW = currentImage.width * absCos + currentImage.height * absSin;
         const newH = currentImage.width * absSin + currentImage.height * absCos;
-
         canvas.width = newW;
         canvas.height = newH;
         ctx.save();
@@ -1017,7 +1056,6 @@
           -currentImage.height / 2,
         );
         ctx.restore();
-
         triggerDownload(
           canvas.toDataURL("image/png"),
           `rotated_${fileInput.files[0].name}.png`,
@@ -1025,7 +1063,6 @@
         closeRotate();
       };
 
-      // --- CROP LOGIC (Fast Center Crop) ---
       const cropModal = document.getElementById("cropModal");
       const closeCrop = () => cropModal.classList.replace("flex", "hidden");
       document.getElementById("btnCancelCrop").onclick = closeCrop;
@@ -1033,20 +1070,16 @@
       function applyCrop(ratioW, ratioH) {
         const canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-
         let cropWidth = currentImage.width;
         let cropHeight = currentImage.width * (ratioH / ratioW);
-
         if (cropHeight > currentImage.height) {
           cropHeight = currentImage.height;
           cropWidth = currentImage.height * (ratioW / ratioH);
         }
-
         canvas.width = cropWidth;
         canvas.height = cropHeight;
         const startX = (currentImage.width - cropWidth) / 2;
         const startY = (currentImage.height - cropHeight) / 2;
-
         ctx.drawImage(
           currentImage,
           startX,
@@ -1069,5 +1102,6 @@
       document.getElementById("btnCropLand").onclick = () => applyCrop(16, 9);
       document.getElementById("btnCropPort").onclick = () => applyCrop(9, 16);
     </script>
+    <script src="/Static/base.js"></script>
   </body>
 </html>
